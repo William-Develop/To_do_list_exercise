@@ -31,23 +31,22 @@ while True:
         exit()        
     
 # Add option to input number to erase a completed task.
-    elif to_do_input.isnumeric():
-        number = int(to_do_input)
-        if number > len(to_do_list):
-            print("Sorry, there's no task with that number.") 
-        else:
-# Create variable to store task and pop it from to_do_list:
-            task = to_do_list.pop(number-1)            
-            completed_tasks.append(task)
-# Add input to to_do_list:          
-    else:
+    elif to_do_input.isdgit() and 1 <= int(to_do_input) <=len(to_do_list):
+        task_index = int(to_do_input) -1
+        task = to_do_list.pop(task_index)
+        completed_tasks.append(task)
+        print(f"Task: {to_do_input}-{task}, marked as completed.")
+        print("-"*35)
+
+    elif to_do_input != "h" and to_do_input not in to_do_list:
         to_do_list.append(to_do_input)
+        
 if completed_tasks:
     print(f"You completed ({len(completed_tasks)}) tasks today!")
 # Add variable to count completed tasks:
     count = 1
-    for to_do_list in completed_tasks:
-        print(f"{count}- {to_do_list}")
+    for task in completed_tasks:
+        print(f"{count} - {task}")
         count += 1
     print("-"*35)
     print("Keep going!")
